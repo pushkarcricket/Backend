@@ -21,3 +21,4 @@
 // const Name= require ("./App");
 // const Info= new Name();
 // Info.info();
+del
