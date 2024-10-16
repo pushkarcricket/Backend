@@ -39,26 +39,43 @@
 
 // server.listen(2700)
 
-const express= require("express");
+// const express= require("express");
 
-const server= express();
+// const server= express();
 
-server.use(function(req,res,next){
-    console.log("hello world")
-    next()
-})
+// server.use(function(req,res,next){
+//     console.log("hello world")
+//     next()
+// })
 
-server.get("/admin", function (req,res){
-    res.send("server is getting started")
-})
+// server.get("/admin", function (req,res){
+//     res.send("server is getting started")
+// })
 
-server.get("/edit", function (req,res){
-    res.send("edit page is loadinng now ")
+// server.get("/edit", function (req,res){
+//     res.send("edit page is loadinng now ")
 
-})
+// })
 
-server.listen(4050,()=>{
-    console.log("server is running on http://localhost:4050")
-})
+// server.listen(4050,()=>{
+//     console.log("server is running on http://localhost:4050")
+// })
 
 // server.listen(4050);
+
+
+const express= require("express")
+const server= express();
+
+server.get("*", (req,res)=>{
+    res.send("page not found")
+})
+server.get("/admin",(req,res)=>{
+    res.send("admin page")
+})
+
+server.get("/edit",(req,res)=>{
+    res.send("edit page is found ")
+})
+
+server.listen(2030)
