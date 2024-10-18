@@ -1,0 +1,13 @@
+const express= require("express");
+const server= express();
+const cookieParser=require("cookie-parser");
+
+server.get("/contact", function(req,res,next){
+    res.send("contact page is found ")
+})
+
+server.get("/admin", function(req,res,next){
+    res.send("admin  page is open now ")
+})
+
+server.listen(4070);
