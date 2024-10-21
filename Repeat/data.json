@@ -1,0 +1,19 @@
+{
+    "programmer" : [
+        {
+        "id" :1,
+        "name" : "pushkar kumar",
+        "language" : "javaScript"
+        },
+        {
+            "id": 2,
+            "name": "sumit",
+            "language" : "REACt"
+
+        },{
+            "id":3,
+            "name": "himanshu",
+            "language":"CSS,JS"
+        }
+    ]
+}
