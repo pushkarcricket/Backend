@@ -1,4 +1,5 @@
 const express=require("express")
+const fs= require("fs")
 
 
 const users=require("./MOCK_DATA.json")
@@ -9,7 +10,7 @@ const app=express()
 app.set("view engine", "ejs")
 
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: false}))
 
 
 app.get("/", (req,res)=>{
@@ -23,7 +24,7 @@ app.get("/:api/users", (req,res)=>{
     res.send(users)
 })
 
-app.route("/api/usrs/:id")
+app.route("/api/users/:id")
 .get((req,res)=>{
     const id= Number(req.params.id)
     const user= users.find((user)=> user.id === id)
@@ -45,10 +46,25 @@ app.route("/api/usrs/:id")
 
 
 
-// app.post("/api/users", (req,res)=>{
-//     res.send("your ")
-// })
+ app.post("/api/users/:id", (req,res)=>{
+     const body=req.body;
+     console.log("body", body)
+
+     users.push({...body, id: users.length +1})
+     fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err)=>{
+        if(err){
+            console.log("Error writing to file",err)
+        }else{
+            return  res.json({satus: "success", message: "User added successfully"})
+
+        }
+
+       
+        
+     })
+    
+ })
 
 // app.patch("/api/users/:id"(req))
 
-app.listen(4050)
+app.listen(4060)
