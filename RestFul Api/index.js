@@ -1,5 +1,8 @@
 const express=require("express")
 const fs= require("fs")
+const morgan=require("morgan")
+const myMiddleWareFunction=require("./middleware/middle")
+const mySecondFunction=require("./mysecondMiddleware/mysecond")
 
 
 const users=require("./MOCK_DATA.json")
@@ -8,9 +11,21 @@ const users=require("./MOCK_DATA.json")
 const app=express()
 
 app.set("view engine", "ejs")
+app.use(morgan())
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+
+//cutom middleware
+
+app.use(myMiddleWareFunction
+)
+app.use(mySecondFunction)
+
+// app.use(function(req,res,next){
+//     console.log("this is my second middleware")
+//     next()
+// })
 
 
 app.get("/", (req,res)=>{
@@ -48,7 +63,7 @@ app.route("/api/users/:id")
     
     res.send("your data is editing this thing")
 })
-app.delete((req,res)=>{
+app.delete("/api/users/:id",(req,res)=>{
     const id= Number(req.params.id)
 
 
